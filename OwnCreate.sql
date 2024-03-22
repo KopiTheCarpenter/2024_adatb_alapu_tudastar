@@ -10,22 +10,22 @@ DROP TABLE Felhasznalo;
 
 CREATE TABLE Felhasznalo (
   id number,
-  nev varchar(255) NOT NULL,
-  jelszo varchar(255),
-  email varchar(255) NOT NULL,
+  nev varchar2(255) NOT NULL,
+  jelszo varchar2(255),
+  email varchar2(255) NOT NULL,
   adminisztrator_e number(1),
   CONSTRAINT felhasznalo_pk PRIMARY KEY (id),
   CONSTRAINT egyedi_email UNIQUE(email)
 );
 CREATE TABLE Cikk(
   id NUMBER,
-  cim varchar(255) NOT NULL,
-  tartalom varchar(255),
-  feltoltes_ideje varchar(255),
-  utolso_modositas_ideje varchar(255),
+  cim varchar2(255) NOT NULL,
+  tartalom varchar2(255),
+  feltoltes_ideje varchar2(255),
+  utolso_modositas_ideje varchar2(255),
   modositasok_szama number,
   lektoralt_e number,
-  nyelv varchar(255),
+  nyelv varchar2(255),
   szerzo_id number,
   utolso_modosito_id number,
   CONSTRAINT cikk_pk PRIMARY KEY (id),
@@ -35,39 +35,39 @@ CREATE TABLE Cikk(
 );
 CREATE TABLE Lektor (
   id number,
-  tudomanyos_fokozat varchar(255),
-  intezet varchar(255),
-  szakterulet varchar(255),
+  tudomanyos_fokozat varchar2(255),
+  intezet varchar2(255),
+  szakterulet varchar2(255),
   felhasznalo_adatok_id number,
   CONSTRAINT lektor_pk PRIMARY KEY (id),
   CONSTRAINT lektor_fk FOREIGN KEY (felhasznalo_adatok_id) REFERENCES felhasznalo(id) ON DELETE SET NULL
 );
 CREATE TABLE Kategoria(
   id number,
-  megnevezes varchar(255),
+  megnevezes varchar2(255),
   fo_kategoria_id number,
   CONSTRAINT kategoria_pk PRIMARY KEY (id),
   CONSTRAINT kategoria_fk FOREIGN KEY (fo_kategoria_id) REFERENCES kategoria(id) ON DELETE SET NULL
 );
 CREATE TABLE Temakor(
   id number,
-  megnevezes varchar(255),
+  megnevezes varchar2(255),
   fo_temakor_id number,
   CONSTRAINT temakor_pk PRIMARY KEY (id),
   CONSTRAINT temakor_fk FOREIGN KEY (fo_temakor_id) REFERENCES temakor(id) ON DELETE SET NULL
 );
 CREATE TABLE Nyelvtudas(
   id number,
-  nyelv varchar(255),
-  szint varchar(255),
+  nyelv varchar2(255),
+  szint varchar2(255),
   lektor_id number,
   CONSTRAINT nyelvtudas_pk PRIMARY KEY (id),
   CONSTRAINT nyelvtudas_fk FOREIGN KEY (lektor_id) REFERENCES lektor(id) ON DELETE SET NULL
 );
 CREATE TABLE Hiba(
   id number,
-  bejelentes_ideje varchar(255),
-  hiba_leiras varchar(255),
+  bejelentes_ideje varchar2(255),
+  hiba_leiras varchar2(255),
   archiv_e number(1),
   bejelento_felhasznalo_id number,
   CONSTRAINT hiba_pk PRIMARY KEY (id),
@@ -409,7 +409,7 @@ VALUES (18, 'Lorem Ipsum 31', 'Lorem ipsum dolor sit amet, consectetur adipiscin
 INSERT INTO Cikk(id, cim, tartalom, feltoltes_ideje, utolso_modositas_ideje, modositasok_szama, lektoralt_e, nyelv, szerzo_id, utolso_modosito_id)
 VALUES (19, 'Lorem Ipsum 32', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lobortis velit sed arcu dapibus tincidunt. Praesent sagittis orci ut tincidunt viverra.', '2023-04-30', '2023-04-30', 0, 0, 'hu', 4, 4);
 
-INSERT INTO Cikk_kategoria (id, cikk_id, kategoria_id) VALUES (1, 1, 2);
+INSERT INTO Cikk_kategoria (id, cikk_id, kategoria_id) VALUES (1, 1, 2);20
 INSERT INTO Cikk_kategoria (id, cikk_id, kategoria_id) VALUES (2, 1, 3);
 INSERT INTO Cikk_kategoria (id, cikk_id, kategoria_id) VALUES (3, 1, 4);
 INSERT INTO Cikk_kategoria (id, cikk_id, kategoria_id) VALUES (4, 2, 1);
@@ -449,7 +449,7 @@ INSERT INTO Cikk_temakor(id, cikk_id, temakor_id) VALUES (16, 16, 16);
 INSERT INTO Cikk_temakor(id, cikk_id, temakor_id) VALUES (17, 17, 17);
 INSERT INTO Cikk_temakor(id, cikk_id, temakor_id) VALUES (18, 18, 18);
 INSERT INTO Cikk_temakor(id, cikk_id, temakor_id) VALUES (19, 19, 19);
-INSERT INTO Cikk_temakor(id, cikk_id, temakor_id) VALUES (20, 20, 20);
+INSERT INTO Cikk_temakor(id, cikk_id, temakor_id) VALUES (20, 18, 20);
 
 INSERT INTO Hiba (id, bejelentes_ideje, hiba_leiras, archiv_e, bejelento_felhasznalo_id) VALUES (1, '2022-01-01', 'Hálózati hiba', 0, 1);
 INSERT INTO Hiba (id, bejelentes_ideje, hiba_leiras, archiv_e, bejelento_felhasznalo_id) VALUES (2, '2022-02-15', 'Alkalmazás nem válaszol', 0, 2);
@@ -504,8 +504,8 @@ END IF;
 END;
 
 CREATE OR REPLACE PROCEDURE authenticate_user(
-    p_email IN VARCHAR2,
-    p_password IN VARCHAR2,
+    p_email IN varchar2,
+    p_password IN varchar2,
     p_user_id OUT NUMBER
 ) AS
 BEGIN
