@@ -415,7 +415,7 @@ VALUES (18, 'Lorem Ipsum 31', 'Lorem ipsum dolor sit amet, consectetur adipiscin
 INSERT INTO Cikk(id, cim, tartalom, feltoltes_ideje, utolso_modositas_ideje, modositasok_szama, lektoralt_e, nyelv, szerzo_id, utolso_modosito_id)
 VALUES (19, 'Lorem Ipsum 32', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lobortis velit sed arcu dapibus tincidunt. Praesent sagittis orci ut tincidunt viverra.', '2023-04-30', '2023-04-30', 0, 0, 'hu', 4, 4);
 
-INSERT INTO Cikk_kategoria (id, cikk_id, kategoria_id) VALUES (1, 1, 2);20
+INSERT INTO Cikk_kategoria (id, cikk_id, kategoria_id) VALUES (1, 1, 2);
 INSERT INTO Cikk_kategoria (id, cikk_id, kategoria_id) VALUES (2, 1, 3);
 INSERT INTO Cikk_kategoria (id, cikk_id, kategoria_id) VALUES (3, 1, 4);
 INSERT INTO Cikk_kategoria (id, cikk_id, kategoria_id) VALUES (4, 2, 1);
