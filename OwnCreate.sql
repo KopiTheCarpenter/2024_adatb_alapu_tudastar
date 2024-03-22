@@ -1,3 +1,5 @@
+-- *_pk = * primary key
+-- *_fk = * foreign key
 DROP TABLE Cikk_kategoria;
 DROP TABLE Cikk_temakor;
 DROP TABLE Hiba;
@@ -78,7 +80,9 @@ CREATE TABLE Cikk_kategoria(
   cikk_id number,
   kategoria_id number,
   CONSTRAINT cikk_kategoria_pk PRIMARY KEY (id),
+  -- cikkkc = cikk_kategoria cikk 
   CONSTRAINT cikkkc_fk FOREIGN KEY (cikk_id) REFERENCES cikk(id) ON DELETE SET NULL,
+  -- cikkkk = cikk_kategoria kategoria 
   CONSTRAINT cikkkk_fk FOREIGN KEY (kategoria_id) REFERENCES kategoria(id) ON DELETE SET NULL
 );
 CREATE TABLE Cikk_temakor(
@@ -86,11 +90,13 @@ CREATE TABLE Cikk_temakor(
   cikk_id number,
   temakor_id number,
   CONSTRAINT cikk_temakor_pk PRIMARY KEY (id),
+  -- cikktc = cikk_temakor cikk 
   CONSTRAINT cikktc_fk FOREIGN KEY (cikk_id) REFERENCES cikk(id) ON DELETE SET NULL,
+  -- cikktt = cikk_temakor temakor
   CONSTRAINT cikktt_fk FOREIGN KEY (temakor_id) REFERENCES temakor(id) ON DELETE SET NULL
 );
 
- INSERT INTO felhasznalo (id, nev, jelszo, email,adminisztrator_e) VALUES (1,'admin', 'admin', 'admin@admin.com',1);
+ INSERT INTO felhasznalo (id, nev, jelszo, email,adminisztrator_e) VALUES (1,'admin', 'PCZWIHADBXIXYGCW', 'admin@admin.com',1);
  INSERT INTO felhasznalo (id, nev, jelszo, email,adminisztrator_e) VALUES (2,'Gipsz Virág', 'PDHLHYVPSYLDSJQD', 'Gipsz.Virág1@mail.com',0);
  INSERT INTO felhasznalo (id, nev, jelszo, email,adminisztrator_e) VALUES (3,'Cserepes Elek', 'LVRONUXNHURQAPKB', 'Cserepes.Elek2@mail.com',0);
  INSERT INTO felhasznalo (id, nev, jelszo, email,adminisztrator_e) VALUES (4,'Teszt Sándor', 'AXZWIHSZBXIXYGCW', 'Teszt.Sándor3@mail.com',0);
